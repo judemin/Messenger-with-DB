@@ -1,8 +1,10 @@
 import pymysql
 
+print("Please Change DB id and pw if err pops")
+
 conn = pymysql.connect(host='localhost', user='root', password='apmsetup',db='messenger_db', charset='utf8')
 curs = conn.cursor()
-sql = "select * from customer"
+sql = "select * from login_info"
 curs.execute(sql)
 rows = curs.fetchall()
 print(rows)
