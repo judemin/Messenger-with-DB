@@ -1,10 +1,16 @@
 import socket
 
-HOST = '127.0.0.1'
+print("Test Messenger Client")
+userName = input("Input User Name  : ")
+HOST = input("Input IP : ")
 PORT = 50007
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))
-s.sendall('Hello, world')
-data = s.recv(1024)
+print("Connected to " + HOST)
+s.sendall(userName.encode(1024))
+
+while True :
+	command = input("Input User Name  : ")
+
 s.close()
 print ("Received" +  repr(data))
