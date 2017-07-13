@@ -9,6 +9,7 @@ PORT = 50007
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))
 print("Connected to " + HOST)
+userName = "Tmp"
 
 while True :
 	print("")
@@ -22,6 +23,7 @@ while True :
 		status = (s.recv(1024)).decode('utf-8')
 		if status is '1' :
 			print("Welcome " + tmp_id)
+			userName = tmp_id
 			break
 		else :
 			print("ID or PW is Incorrect!")
@@ -37,6 +39,16 @@ while True :
 			print("Registration Complete!")
 		else :
 			print("Registration Error!")
+	else:
+		print("Incorrect Command")
+
+while True :
+	print("")
+	tmp = input("1:Logout  2:Send Message  3:Show Messages - ")
+	if tmp is '1':
+		s.sendall(tmp.encode())
+		print("Good Bye " + userName)
+		break
 	else:
 		print("Incorrect Command")
 

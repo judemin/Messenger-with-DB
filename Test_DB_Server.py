@@ -22,6 +22,7 @@ s.bind((HOST, PORT))
 s.listen(1)
 conn, addr = s.accept()
 print ("Connected by " + addr[0])
+clientName = "Tmp"
 
 while True :
 	data = (conn.recv(1024)).decode('utf-8')
@@ -43,6 +44,7 @@ while True :
 			tmpM = '1'
 			conn.sendall(tmpM.encode())
 			print("Login Complete from " + tmp_id)
+			clientName = tmp_id
 			break
 		else :
 			tmpM = '0'
@@ -76,5 +78,11 @@ while True :
 			tmpM = '0'
 			conn.sendall(tmpM.encode())
 			print("Registration Error from " + tmp_id)
+
+while True :
+	data = (conn.recv(1024)).decode('utf-8')
+	if data is '1' :
+		print("" + clientName + " has been disconnected")
+		break
 
 conn.close()
