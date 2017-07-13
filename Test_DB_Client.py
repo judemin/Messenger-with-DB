@@ -49,6 +49,17 @@ while True :
 		s.sendall(tmp.encode())
 		print("Good Bye " + userName)
 		break
+	if tmp is '3':
+		s.sendall(tmp.encode())
+		messageNum = 0
+		data = (s.recv(1024)).decode('utf-8')
+		while True :
+			print("" + data)
+			messageNum += 1
+			if data.endswith('0'):
+				break
+			data = (s.recv(1024)).decode('utf-8')
+		print("There were " + str(messageNum) + " messages")
 	else:
 		print("Incorrect Command")
 

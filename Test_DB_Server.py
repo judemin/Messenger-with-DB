@@ -10,6 +10,7 @@ ID='root'
 PW = 'apmsetup'
 DB = 'messenger_db'
 table = 'login_info'
+message_table = 'messages'
 connDB = pymysql.connect(host='localhost', user=ID, password=PW,db=DB, charset='utf8')
 curs = connDB.cursor()
 print("Successfully Connected to " +  DB)
@@ -84,5 +85,16 @@ while True :
 	if data is '1' :
 		print("" + clientName + " has been disconnected")
 		break
+	if data is '3':
+		print("Message Request from " + clientName)
+		curs.execute("SELECT * FROM " + message_table + " WHERE receiver = '"
+			+ clientName + "' ORDER BY send_date DESC")
+		row = curs.fetchone()
+		while row is not None :
+			conn.sendall(str(row).encode())
+			row = curs.fetchone()
+		tmpM = '0'
+		conn.sendall(tmpM.encode())
+		print("Successfully Sended to " + clientName)
 
 conn.close()
