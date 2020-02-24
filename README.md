@@ -3,6 +3,6 @@
 
 2017/07/12 : Added Simple Login Function
 
-           *But Server can't handle multiple client
+           *Server can't handle multiple client
            
            *Will add Message Function
